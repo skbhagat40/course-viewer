@@ -5,10 +5,10 @@ import {
     Route,
     NavLink
 } from "react-router-dom";
-import Courses from './courses'
 import About from './about'
 import Home from './home';
 import NoMatch from './NoMatch';
+import coursesList from './coursesList';
 function Navbar() {
     return (<Router>
         <div>
@@ -32,7 +32,7 @@ function Navbar() {
             </nav>
             <Switch>
                 <Route exact path='/' component={Home}></Route>
-                <Route path='/courses' component={Courses}></Route>
+                <Route path='/courses' component={coursesList}></Route>
                 <Route path='/about' component={About}></Route>
                 <Route path='*' component={NoMatch}></Route>
             </Switch>
