@@ -1,11 +1,12 @@
 import React from 'react'
+import {addCourse} from './actions/index'
+import { connect } from 'react-redux';
 class Courses extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { courses: [] };
         this.courseName = React.createRef();
     }
-    addCourse = () => {this.setState((state) => ({courses: [...state.courses, this.courseName.current.value]}), () => (this.courseName.current.value = '') )}
+    addCourse = () => { this.courseName.current.value && this.props.addCourse(this.courseName.current.value); this.courseName.current.value = '';}
     render() {
         return (
             <div className='card w-50 text-center mx-auto mt-5 px-5'>
@@ -13,7 +14,7 @@ class Courses extends React.Component {
                     Courses
                 </h4>
                 <ul>
-                    {this.state.courses.map((course, id) => (<li key={id}>{course}</li>))}
+                    {this.props.courses.map((course, id) => (<li key={id}>{course}</li>))}
                 </ul>
                 <div>
                     <h4>Add Courses</h4>
@@ -28,4 +29,6 @@ class Courses extends React.Component {
         )
     }
 }
-export default Courses
+const mapStateToProps = (state) => ({courses: state});
+const mapDispatchToProps = (dispatch) => ({addCourse: (title) => dispatch(addCourse(title))});
+export default connect(mapStateToProps, mapDispatchToProps)(Courses)

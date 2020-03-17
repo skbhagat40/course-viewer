@@ -26,3 +26,4 @@ package.json
 ./package.json
 ./yarn.lock
 yarn.lock
+jsconfit.json
