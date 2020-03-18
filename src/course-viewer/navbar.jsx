@@ -9,6 +9,7 @@ import About from './about'
 import Home from './home';
 import NoMatch from './NoMatch';
 import coursesList from './coursesList';
+import AddCourse from './AddCourse'
 function Navbar() {
     return (<Router>
         <div>
@@ -34,6 +35,7 @@ function Navbar() {
                 <Route exact path='/' component={Home}></Route>
                 <Route path='/courses' component={coursesList}></Route>
                 <Route path='/about' component={About}></Route>
+                <Route to='/course' component={AddCourse}></Route>
                 <Route path='*' component={NoMatch}></Route>
             </Switch>
         </div>

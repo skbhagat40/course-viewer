@@ -5,10 +5,34 @@ import { combineReducers } from 'redux'
 function courses(state = [], action) {
     switch (action.type) {
         case ACTION_TYPES.ADD_COURSE:
-            return [...state, action.payload.title]
+            return [...state, action.payload.course]
+        case ACTION_TYPES.FETCH_COURSES:
+            return [...action.payload.courses]
         default:
             return state
     }
 }
-const rootReducer = combineReducers({ courses })
+
+function authors(state = [], action) {
+    switch (action.type) {
+        case ACTION_TYPES.ADD_AUTHOR:
+            return [...state, action.payload.author]
+        case ACTION_TYPES.FETCH_AUTHORS:
+            return [...action.payload.authors]
+        default:
+            return state
+    }
+}
+
+function addCourseLoading(state = false, action) {
+    switch (action.type) {
+        case ACTION_TYPES.ADD_COURSE_LOADING:
+            return true
+        case ACTION_TYPES.ADD_COURSE_COMPLETED:
+            return false
+        default:
+            return false
+    }
+}
+const rootReducer = combineReducers({ courses, authors, addCourseLoading })
 export default rootReducer
