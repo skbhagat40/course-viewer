@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
+import {Link} from 'react-router-dom'
 
 class Courses extends React.Component {
     constructor(props) {
@@ -14,8 +15,9 @@ class Courses extends React.Component {
         return this.props.authors.length && this.props.authors.filter((author) => author.id === authorId)[0]?.name;
     }
     render() {
+        console.log(this.props.courses);    
         return (
-            <div className='card w-50 text-center mx-auto mt-5 px-5'>
+            <div className='card w-75 text-center mx-auto mt-5 px-5'>
                 <div className='mb-1 text-left'>
                     <h4>
                         Courses
@@ -34,12 +36,15 @@ class Courses extends React.Component {
                     <tbody>
                         {this.props.courses.map((course, id) => (
                             <tr>
-                                <th itemScope='row'>
+                                <td itemScope='row'>
                                     <Button className='btn btn-primary'>Watch</Button>
-                                </th>
-                                <td>{course.title}</td>
+                                </td>
+                                <td><Link to={`/course/${course.slug}`}>{course.title}</Link></td>
                                 <td>{this.getAuthor(course.authorId)}</td>
                                 <td>{course.category}</td>
+                                <td itemScope='row'>
+                                    <Button className='btn btn-primary' onClick={this.props.deleteCourseApi.bind(null, course.id)}>Delete Course</Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>

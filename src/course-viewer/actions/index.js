@@ -1,5 +1,5 @@
 import { ACTION_TYPES } from './action-types'
-import { getCourses, saveCourse } from '../../api/courseApi'
+import { getCourses, saveCourse, deleteCourse } from '../../api/courseApi'
 import { getAuthors } from '../../api/authorApi';
 
 export const addCourse = (course) => ({
@@ -23,11 +23,20 @@ export function fetchCourses() {
 }
 export function addCourseApi(course) {
     return (dispatch) => {
-        dispatch(courseLoading);
+        dispatch(courseLoading());
         saveCourse(course).then(course => {
             dispatch(addCourse(course));
-            dispatch(courseLoaded);
+            dispatch(courseLoaded());
         });
+    }
+}
+export const removeCourse = (courseId) => ({
+    type: ACTION_TYPES.DELETE_COURSE,
+    payload: { id: courseId }
+})
+export function deleteCourseApi(courseId) {
+    return (dispatch) => {
+        deleteCourse(courseId).then(() => dispatch(removeCourse(courseId)));
     }
 }
 export const addAuthor = (author) => ({

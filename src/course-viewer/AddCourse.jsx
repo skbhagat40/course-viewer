@@ -3,21 +3,34 @@ import { connect } from 'react-redux'
 import './AddCourse.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { addCourseApi } from './actions'
+// import { Redirect } from 'react-router-dom';
+
 
 class AddCourse extends React.Component {
-    componentDidUpdate() {
-        console.log('component updating');
+    componentDidUpdate(prevProps) {
+        if (prevProps && prevProps.addCourseLoading && !this.props.addCourseLoading){
+            this.props.history.push('/courses');
+            // return <Redirect to='/courses' />; why this is not working ??
+        }
+    }
+    constructor(props) {
+        super(props);
+        this.courseDetail = null;
+        const { match: { params } } = this.props;
+        if (params && params.slug) {
+            this.courseDetail = this.props.courses.filter((course) => (course.slug == params.slug))[0];
+        }
     }
     renderError = (msg) => (<div className='alert alert-danger mt-2'>{msg}</div>)
     render() {
-        console.log('component props', this.props);
+        console.log(this.props);
         return (
             <div className='card text-left mt-5 px-5'>
                 <div className='card-header'>
                     <h4>Add Course</h4>
                 </div>
                 <div className="card-body">
-                    <Formik initialValues={{
+                    <Formik initialValues={this.courseDetail ? this.courseDetail : {
                         title: '',
                         authorId: '',
                         category: ''
@@ -57,7 +70,7 @@ class AddCourse extends React.Component {
     }
 
 }
-const mapStateToProps = (state) => ({ authors: state.authors, addCourseLoading: state.addCourseLoading })
+const mapStateToProps = (state) => ({ authors: state.authors, addCourseLoading: state.addCourseLoading, courses: state.courses })
 const mapDispatchToProps = (dispatch) => ({
     addCourseApi: (course) => dispatch(addCourseApi(course))
 })

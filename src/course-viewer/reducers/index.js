@@ -8,6 +8,8 @@ function courses(state = [], action) {
             return [...state, action.payload.course]
         case ACTION_TYPES.FETCH_COURSES:
             return [...action.payload.courses]
+        case ACTION_TYPES.DELETE_COURSE:
+            return [...state.filter((course) => (course.id !== action.payload.id))]
         default:
             return state
     }

@@ -35,7 +35,8 @@ function Navbar() {
                 <Route exact path='/' component={Home}></Route>
                 <Route path='/courses' component={coursesList}></Route>
                 <Route path='/about' component={About}></Route>
-                <Route to='/course' component={AddCourse}></Route>
+                <Route path='/course/:slug' component={AddCourse}></Route>
+                <Route path='/course' component={AddCourse}></Route>
                 <Route path='*' component={NoMatch}></Route>
             </Switch>
         </div>
