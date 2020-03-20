@@ -13,7 +13,10 @@ export const addCourses = (courses) => ({
 })
 export const courseLoading = () => ({ type: ACTION_TYPES.ADD_COURSE_LOADING });
 export const courseLoaded = () => ({ type: ACTION_TYPES.ADD_COURSE_COMPLETED });
-
+export const requestCourses = () => ({ type: ACTION_TYPES.REQUEST_COURSES });
+export const requestAuthors = () => ({ type: ACTION_TYPES.REQUEST_AUTHORS });
+export const requestAddCourse = (course) => ({ type: ACTION_TYPES.REQUEST_ADD_COURSE, course });
+export const requestDeleteCourse = (id) => ({ type: ACTION_TYPES.REQUEST_DELETE_COURSE, id });
 export function fetchCourses() {
     return (dispatch) => {
         getCourses().then((courses) => {

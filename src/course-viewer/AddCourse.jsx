@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './AddCourse.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { addCourseApi } from './actions'
+import { addCourseApi, requestAddCourse } from './actions'
 // import { Redirect } from 'react-router-dom';
 
 
@@ -72,6 +72,6 @@ class AddCourse extends React.Component {
 }
 const mapStateToProps = (state) => ({ authors: state.authors, addCourseLoading: state.addCourseLoading, courses: state.courses })
 const mapDispatchToProps = (dispatch) => ({
-    addCourseApi: (course) => dispatch(addCourseApi(course))
+    addCourseApi: (course) => dispatch(requestAddCourse(course))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(AddCourse)
