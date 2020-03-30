@@ -1,2 +1,2 @@
-export { fetchCoursesSaga, addCourseSaga, deleteCourseSaga } from './fetchCoursesSaga'
-export { fetchAuthorsSaga } from './fetchAuthorsSaga'
+export { fetchCoursesSaga, addCourseSaga, deleteCourseSaga } from './CoursesSaga'
+export { fetchAuthorsSaga } from './AuthorsSaga'

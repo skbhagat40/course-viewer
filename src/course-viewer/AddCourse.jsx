@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './AddCourse.css'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { addCourseApi, requestAddCourse } from './actions'
+import {requestAddCourse } from './actions'
 // import { Redirect } from 'react-router-dom';
 
 
