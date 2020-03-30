@@ -5,7 +5,7 @@ import { combineReducers } from 'redux'
 function courses(state = [], action) {
     switch (action.type) {
         case ACTION_TYPES.ADD_COURSE:
-            return [...state, action.payload.course]
+            return [...state.map(course => course.id === action.payload.course.id ? action.payload.course : course)]
         case ACTION_TYPES.FETCH_COURSES:
             return [...action.payload.courses]
         case ACTION_TYPES.DELETE_COURSE:
